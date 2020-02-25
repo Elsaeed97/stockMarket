@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %} About Stock App{% endblock %}
+{% block content %}
+
+<br>
+<h1>Delete Stock </h1>
+<br><br>
+{% if ticker %}
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">Stock Name</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for item in ticker %}
+    <tr>
+      <th scope="row">{{item.id}}</th>
+      <td>{{ item }}</td>
+      <td><a class="btn btn-outline-danger" href="{% url 'delete' item.id %}"> Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">No Stocks To Delete </h1>
+    <p class="lead">Go Add Some You Bitch..</p>
+    <hr>
+    <a href="{% url 'add_stock' %}">Add Stock</a>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
